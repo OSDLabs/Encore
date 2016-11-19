@@ -1,0 +1,375 @@
+body, html{
+}
+body{
+  padding-top: 32px;
+  font-family: 'Open Sans', sans-serif;
+}
+#wrapper{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  outline: 0;
+}
+.content-body{
+  padding: 20px;
+}
+#content{
+  height: 90%;
+  height: calc(100% - 93px);
+  margin-top: 31px;
+  margin-left: 200px;
+  padding: 20px;
+  padding-bottom: 0px;
+}
+#content > div{
+  height: 100%;
+  overflow-y: auto;
+}
+#content > div > h1{
+  margin-top: 10px;
+}
+#sidebar{
+  margin-top: 50px;
+  padding-bottom: 60px;
+  width: 200px;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  box-shadow: 0 0 20px #ccc;
+}
+.sidebar_controls{
+  text-align: center;
+  width: 100%;
+}
+#sidebar .input-group{
+  margin: 10px;
+  margin-bottom: 0;
+}
+#sidebar h3{
+  padding-left: 10px;
+}
+#sidebar_height_wrapper{
+  height: 80%;
+  height: calc(100% - 150px);
+}
+#sidebar_height_wrapper > ul{
+  height: 90%;
+  height: calc(100% - 50px);
+  overflow-y: hidden;
+}
+#sidebar_height_wrapper > ul:hover{
+  overflow-y: scroll;
+}
+#bottom_bar{
+  position: fixed;
+  bottom: 0;
+  height: 61px;
+  width: 100%;
+  background-color: rgb(235,235,235);
+  box-shadow: 0 0 30px #ccc;
+  padding-top: 2px;
+  -webkit-transform: translateZ(0);
+}
+#bottom_bar:focus{
+  outline: 0;
+}
+.duration, .current_time{
+  position: fixed;
+  pointer-events: none;
+  display: none;
+  bottom: 63px;
+}
+.duration{
+  right: 0;
+}
+.current_time{
+  left: 0;
+}
+#bottom_bar:hover .current_time,
+#bottom_bar:hover .duration{
+  display: block;
+  background-color: rgb(235,235,235);;
+  z-index: 2;
+  padding: 2px;
+  color: #fff;
+}
+#bottom_bar:hover .duration{
+  padding-left: 5px;
+  border-top-left-radius: 5px;
+}
+#bottom_bar:hover .current_time{
+  padding-right: 5px;
+  border-top-right-radius: 5px;
+}
+.slider-track{
+  border-radius: 0px;
+}
+.disable_selection{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.song_table{
+  table-layout: fixed;
+  margin-bottom: 0;
+}
+.song_table tbody > tr > td{
+  padding: 0 !important;
+  line-height: 40px;
+  vertical-align: middle;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+tr:hover{
+  background-color: #eeeeee;
+}
+.light-blue:hover{
+  background-color: #aaa;
+}
+tr:hover .options{
+  display: inline-block;
+}
+.options{
+  display: none;
+}
+.option_div{
+  float: right;
+  vertical-align: middle;
+  margin-right: 10px;
+  position: relative;
+  z-index: 1;
+}
+.options:hover{
+  color: #444;
+}
+.options-menu{
+  max-height: 300px;
+  overflow-y: auto;
+}
+.song_text{
+  z-index: 0;
+}
+.colsearch:hover{
+  text-decoration: underline;
+}
+.unknown_cover {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+.cover{
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+.popover_cover{
+  max-width: 400px;
+  max-height: 400px;
+  border-radius: 20px;
+}
+.drop_placeholder{
+  float: right;
+  width: 270px;
+  height: 40px;
+  line-height: 38px;
+  text-align: center;
+  border: 2px dashed #ccc;
+}
+.dropping_file{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  font-size: 40px;
+  padding-top: 100px;
+  background-color: rgba(0,0,0, 0.5);
+  color: white;
+  text-align: center;
+}
+/*** bottom bar items ***/
+.controls{
+  float: left;
+  width: 323px;
+  height: 100%;
+  margin: 0;
+  margin-left: -161px;
+  padding: 0;
+  background-color: rgb(235,235,235);
+  box-shadow: -10px 0px 5px #fff;
+}
+.controls .fa{
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  height: 100%;
+}
+.controls .fa:hover{
+  background-color: #ddd;
+}
+#settings_bar{
+  float: right;
+  padding: 9px;
+}
+#repeat_badge{
+  position: absolute;
+  margin-left: -25px;
+  margin-top: 5px;
+  background-color: #444;
+}
+#scrub_bar_slider{
+  width: 100%;
+  position: fixed;
+  bottom: 55px;
+  left: 0px;
+  z-index: 1;
+}
+#vol_bar_slider{
+  margin-right: 20px;
+}
+.volume_icon{
+  vertical-align: middle;
+  margin-right: 5px;
+}
+/*** slider changes ***/
+.slider.slider-horizontal:hover .slider-track{
+  background: #ddd;
+}
+.slider.slider-horizontal .slider-track{
+  height: 5px;
+  background: #eee;
+  transition: background 1s;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+.slider-selection{
+  background: #444;
+}
+.slider.slider-horizontal .slider-handle{
+  opacity: 1;
+  margin-top: -7px;
+  background: #ddd;
+}
+/*** info ***/
+#current_info{
+  float: left;
+  width: 50%;
+  text-align: left;
+  white-space: nowrap;
+}
+.info_cover{
+  float: left;
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
+}
+.detailed_info_cover{
+  max-width: 200px;
+  max-height: 200px;
+}
+/* override popove max width */
+.popover{
+  max-width: 1000px;
+}
+.info_unknown_cover{
+  float: left;
+  font-size: 60px;
+  margin-right: 10px;
+}
+.info_title{
+  margin-bottom: 0;
+  font-size: 18px;
+  text-align: center;
+  padding-top: 3px;
+}
+.info_detail{
+  font-size: 12px;
+  color: #999;
+  padding-top: 3px;
+}
+.info_wrapper{
+  display: inline-block;
+  background-color: rgb(235,235,235);
+}
+.info_options{
+  margin-left: 20px;
+}
+.info_options:hover{
+  color: #444;
+}
+.modal-footer{
+  margin-top: 0;
+}
+/*** options dialog ***/
+.options_container{
+  position: fixed;
+  z-index: 1030;
+}
+/*** color definitions ***/
+.blue{
+  color: #444;
+}
+.light-blue{
+  background-color: #aaa;
+}
+.selected{
+  background-color: #aaa;
+}
+/*** custom scrollbar ***/
+.custom_scrollbar::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.custom_scrollbar::-webkit-scrollbar-track {
+  background-color: rgba(113,112,107,0.1);
+  -webkit-border-radius: 5px;
+}
+.custom_scrollbar::-webkit-scrollbar-thumb:vertical {
+  background-color: rgba(0,0,0,.2);
+  -webkit-border-radius: 6px;
+}
+.custom_scrollbar::-webkit-scrollbar-thumb:vertical:hover,
+.custom_scrollbar::-webkit-scrollbar-thumb:horizontal:hover {
+  background: #444;
+}
+.custom_scrollbar::-webkit-scrollbar-thumb:horizontal {
+  background-color: rgba(0,0,0,.2);
+  -webkit-border-radius: 6px;
+}
+/*** th widths ***/
+.duration_th{
+  width: 50px;
+}
+.play_count_th{
+  width: 100px;
+}
+.index_th{
+  width: 55px;
+  text-align: right;
+}
+.index_text{
+  padding-right: 10px;
+}
+/*** sync page ***/
+.form-container{
+  max-width: 1000px;
+}
+.sync_div{
+  visibility: hidden;
+}
+.back_to_songs{
+  margin-right: 10px;
+}
+/*** custom generic classes ***/
+.pointer{
+  cursor: pointer;
+}
+
+
