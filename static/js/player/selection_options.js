@@ -133,6 +133,11 @@ function createOptions(x, y) {
     hideOptions();
   });
 
+  $('.hide_options').click(function(ev) {
+    console.log("closing");
+    hideOptions();
+  });
+
   optionsVisible = true;
 }
 

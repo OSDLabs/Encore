@@ -34,8 +34,8 @@
     <div class='duration'></div>
     <input type="text" id="scrub_bar" data-slider-value="0" data-slider-id="scrub_bar_slider" value="" data-slider-max="100" data-slider-step="0.1" data-slider-tooltip="hide" />
     <div class="controls" style="margin-left: 0px !important">
-      
-      
+
+
       <i id="prev" class="fa fa-backward fa-2x" style="vertical-align: super;"></i>
       <i id="playpause" class="fa fa-play fa-3x"></i>
       <i id="next" class="fa fa-forward fa-2x" style="vertical-align: super;"></i>
@@ -228,11 +228,13 @@
         {% endif %}
       {% endfor %}
     {% endif %}
+    <li class="divider"></li>
+    <li class='hide_options'><a>Hide</a></li>
   </ul>
 </div>
 </script>
 <script type="text/swig" id="settings_bar_template">
-  <!-- <i class="fa fa-volume-up fa-2x volume_icon"></i> -->
+  <i class="fa fa-volume-up fa-2x volume_icon"></i>
   <input type="text" id="vol_bar" data-slider-id="vol_bar_slider" data-slider-max="100" data-slider-step="0.1" data-slider-value="{{vol}}" data-slider-tooltip="hide" />
   <!-- <button id='remote_setup' class='btn btn-primary'>Remote Setup</button> -->
 </script>
