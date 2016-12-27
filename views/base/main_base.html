@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,56 +11,78 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
   <script type="text/javascript">
-  head.load(
-    "static/lib/font-awesome-bower/css/font-awesome.css",
-    "static/lib/libs.min.css",
-    "static/css/main.css"
+    head.load(
+      "static/lib/font-awesome-bower/css/font-awesome.css",
+      "static/lib/libs.min.css",
+      "static/css/main.css"
     );
-  var music_dir = "{{music_dir|addslashes}}";
-  var music_dir_set = "{{music_dir_set}}" === "true";
+    var music_dir = "{{music_dir|addslashes}}";
+    var music_dir_set = "{{music_dir_set}}" === "true";
+
   </script>
-  {% block head %}
-  {% endblock %}
+  {% block head %} {% endblock %}
 </head>
+
 <body>
-  {% if menu %}
-  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#playlist/LIBRARY">OSDLabs</a>
-      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+  <!--  Search overlay is spatially present above #music_ui-->
+  <div id="search-overlay">
+    <input type="text" class="search-input" placeholder="Search Encore" id="input">
+    <p id="instructions">Find your favourite songs :)</p>
+    <!--  Search button-->
+    <div id="overlay-search-button">
+      <span id="link">
+    Search
+  </span>
     </div>
-    <div class="navbar-collapse collapse" id="navbar-main">
-      <ul class="nav navbar-nav">
-      <li style="align-self: center;">
-      <a class="pointer" href="#playlist/LIBRARY">Acoust</a>
-      </li>
-        {% if !demo %}
-        <!-- <li class='dropdown'>
+  </div>
+
+  <!--  Custom SVG filter for a bluish tint-->
+  <svg class="defs-only">
+    <filter id="blue-tint" color-interpolation-filters="sRGB" x="0" y="0" height="100%" width="100%">
+      <feColorMatrix type="matrix" values="0.36 0 0 0  0.02 
+              0.44 0 0 0  0.06  
+              0.40 0 0 0  0.16 
+                0  0 0 1  0" />
+    </filter>
+  </svg>
+  <div id="music_ui">
+    {% if menu %}
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#playlist/LIBRARY">OSDLabs</a>
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="navbar-collapse collapse" id="navbar-main">
+        <ul class="nav navbar-nav">
+          <li style="align-self: center;">
+            <a class="pointer" id="search-button"><i class="fa fa-search fa-lg"></i></a>
+          </li>
+          {% if !demo %}
+          <!-- <li class='dropdown'>
           <a class='pointer dropdown-toggle' data-toggle='dropdown'>Scan Library <span class="caret"></span></a>
           <ul class='dropdown-menu' role='menu'>
             <li><a class='pointer' id='soft_scan'>Regular Scan</a></li>
             <li><a class='pointer' id='hard_scan'>Hard Rescan</a></li>
           </ul>
         </li> -->
-        {% endif %}
-        <!-- <li {% if demo %}class="disabled"{% endif %}>
+          {% endif %}
+          <!-- <li {% if demo %}class="disabled"{% endif %}>
           <a class='pointer' id='load_sync_view'>
             Sync Libraries {% if demo %}(disabled in demo){% endif %}
           </a>
         </li> -->
-      </ul>
-      <ul class="nav navbar-nav pull-right">
-        {% block extra_nav %}{% endblock %}
-      </ul>
-    </div>
-  </nav>
-  {% endif %}
-  {% block content %}
-  {% endblock %}
+        </ul>
+        <ul class="nav navbar-nav pull-right">
+          {% block extra_nav %}{% endblock %}
+        </ul>
+      </div>
+    </nav>
+    {% endif %} {% block content %} {% endblock %}
+  </div>
   <script type="text/javascript">
     head.js(
       "static/lib/libs.min.js",
@@ -79,10 +102,13 @@
       "static/js/player/syncview.js",
       "static/js/player/footer.js",
       "static/js/player/coverbox.js",
+      "static/js/player/music-search.js",
       "https://www.youtube.com/iframe_api"
-      );
+    );
+
   </script>
-  {% block scripts %}
-  {% endblock %}
+  {% block scripts %} {% endblock %}
+
 </body>
+
 </html>
