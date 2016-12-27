@@ -346,6 +346,18 @@ function PlayState() {
       if (cover_is_visible && cover_is_current && this.current_song.attributes.cover_location) {
         showCover('cover/' + this.current_song.attributes.cover_location);
       }
+      
+      //set favicon as album art
+      var link = window.document.querySelector("link[rel*='icon']") || document.createElement('link');
+      link.type = 'image';
+      link.rel = 'icon';
+      //check if the cover exixts
+      if (this.current_song.attributes.cover_location) {
+        link.href = 'cover/'+ this.current_song.attributes.cover_location ;
+      } else {
+        link.href = 'static/images/favicon.ico';
+      }
+      window.document.getElementsByTagName('head')[0].appendChild(link);
 
       this.displayNotification();
     }
