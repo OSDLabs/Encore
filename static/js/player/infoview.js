@@ -23,6 +23,9 @@ InfoView = Backbone.View.extend({
       addToSelection(player.playing_id, false);
       createOptions(ev.clientX, ev.clientY);
     }
+    else {
+      hideOptions();
+    }
 
     return false;
   },
