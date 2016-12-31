@@ -21,7 +21,8 @@
     "mustache.js": "~1.1.0",
     "seiyria-bootstrap-slider": "~4.5.1",
     "tablesort": "https://github.com/tristen/tablesort.git#~3.0.2",
-    "underscore": "~1.7.0"
+    "underscore": "~1.7.0",
+    "materialize": "^0.97.8"
   },
   "resolutions": {
     "underscore": "~1.7.0"
