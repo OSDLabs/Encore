@@ -89,6 +89,15 @@ function Config(app) {
           }
         });
       },
+
+      function (cb) {
+        app.db.users.findOne({username:'admin'}, function (err, item) {
+          if(!item)
+            app.db.users.insert({username:'admin',password:'admin'});
+        });
+
+        cb();
+      },
     ], function() {
       // set config as initialised and only call the callback if set
       self.initialized = true;

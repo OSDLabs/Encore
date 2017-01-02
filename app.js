@@ -14,11 +14,13 @@ var util = require(__dirname + '/util.js');
 var mkdirp = require('mkdirp');
 var proxy = require('express-http-proxy');
 var basicAuth = require('basic-auth-connect');
+var passport = require('passport');
+var Strategy = require('passport-local').Strategy;
 
 var app = express().http().io();
 
 var sessionOpts = {
-  secret: 'nmpsecret',
+  secret: 'keyboard cat',
   resave: true,
   saveUninitialized: true,
 };
@@ -65,6 +67,28 @@ async.series([function createDatabaseDirectory(next) {
     app.use(basicAuth(config.auth.username, config.auth.password));
   }
   next();
+}, function setupPassport(next) {
+
+  passport.use(new Strategy(
+  function(username, password, cb) {
+    app.db.users.findOne({username: username}, function(err, user) {
+      if (err) { return cb(err); }
+      if (!user) { return cb(null, false, {message:"Invalid credentials"}); }
+      if (user.password != password) { return cb(null, false, {message:"Invalid credentials"}); }
+      return cb(null, user);
+    });
+  }));
+
+  // Configure Passport persistence.
+  passport.serializeUser(function(user, cb) {
+    var sessionUser = user;
+    cb(null, sessionUser);
+  });
+
+  passport.deserializeUser(function(user, cb) {
+      cb(null, user);
+  });
+  next();
 }, function setupEverythingElse(next) {
   // middleware to use in the app
   app.use(favicon(__dirname + '/static/images/favicon.ico'));
@@ -73,6 +97,11 @@ async.series([function createDatabaseDirectory(next) {
   app.use(cookieParser());
   app.use(express.session(sessionOpts));
   app.use('/static', express.static(__dirname + '/static'));
+
+  //initialize passport
+  app.use(passport.initialize());
+  app.use(passport.session());
+  app.use(require('connect-flash')()); //for error flashes
 
   // proxy for itunes requests
   app.use('/proxy', proxy('https://itunes.apple.com', {

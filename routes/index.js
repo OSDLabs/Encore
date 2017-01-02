@@ -8,6 +8,7 @@ var md5 = require('md5');
 var request = require('request').defaults({ encoding: null });
 var fs = require('fs');
 var path = require('path');
+var passport = require('passport');
 var MobileDetect = require('mobile-detect');
 var similarSongs = require('similar-songs');
 var songSearch = require('song-search');
@@ -29,6 +30,15 @@ exports.createRoutes = function(app_ref) {
   app.get('/songs/:id', sendSong);
   app.get('/cover/:id', sendCover);
   app.get('/downloadplaylist/:id', downloadPlaylist);
+
+  //adds login facility
+  app.get('/admin',function (req,res) {
+    res.render('admin',{msg:req.flash('error')});
+  });
+  //auth using passport
+  app.post('/admin', passport.authenticate('local', { failureRedirect: '/admin', failureFlash: true }), function(req, res) {
+    res.redirect('/');
+  });
 
   // remote control commands
   app.get('/command/:name/:command', remoteCommand);
@@ -105,6 +115,7 @@ function musicRoute(req, res) {
     // the function to send the homepage only when the config is finished initalizing
     var sendHome = function() {
       var config = app.get('config');
+      var user = req.user ? req.user.username : undefined;
       // render the view
       res.render((md.mobile() ? 'mobile' : 'index'), {
         menu: !md.mobile(),
@@ -114,6 +125,7 @@ function musicRoute(req, res) {
         ip: ip + ':' + app.get('port'),
         remote_name: req.params.name,
         demo: config.demo,
+        user: user,
       });
     };
 
