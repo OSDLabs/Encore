@@ -1,0 +1,29 @@
+#preloader-overlay {
+  position: fixed;
+  /*  Offset values added to prevent ugly gaps at the edges*/
+  width: 110%;
+  height: 100%;
+  top: 0;
+  left: -5%;
+  bottom: 0;
+  right: 0;
+  z-index: 2000;
+  background: url(../../images/encore-cover.svg);
+  background-position: center;
+  background-size: cover;
+}
+.preloader-show {
+  max-height: 100%;
+  opacity: 1;
+  transition: max-height 0, opacity 300ms;
+  -webkit-transition: max-height 0, opacity 300ms;
+}
+.preloader-hide {
+  display: block;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  /*  Fade transitions are fucked up. If you prefer something else, be my guest.*/
+  transition: max-height 2s ease-in-out, opacity 50s;
+  -webkit-transition: max-height 2s ease-in-out, opacity 50s;
+}

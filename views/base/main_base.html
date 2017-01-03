@@ -7,9 +7,14 @@
 
   <title>{% block title %}Desktop Command Remote{% endblock %}</title>
 
+  <!--Gotta add pace first, for the preloader-->
+  <script type="text/javascript" src="static/js/preloader/pace.js"></script>
+  <link href="static/css/preloader/preloader.css" rel="stylesheet">
+  <script type="text/javascript" src="static/js/preloader/preloader.js"></script>
+
+
   <script type="text/javascript" src="static/lib/head.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-
   <script type="text/javascript">
     head.load(
       "static/lib/font-awesome-bower/css/font-awesome.css",
@@ -24,6 +29,8 @@
 </head>
 
 <body>
+  <div class="preloader-show" id="preloader-overlay">
+  </div>
   <!--  Search overlay is spatially present above #music_ui-->
   <div id="search-overlay">
     <input type="text" class="search-input" placeholder="Search Encore" id="input">
