@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title></title>
+  <!-- <link rel="stylesheet" type="text/css" href="bower_components/materialize/dist/css/materialize.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+  <link rel="stylesheet" type="text/css" href="static/css/style.css">
+  <script src="https://use.fontawesome.com/1a7fce54c7.js"></script>
+</head>
+
+<body>
+
+  <div class="container music">
+
+    <div class="row" style="text-align: center;">
+      <div class="col s12 m12">
+        <div class="card bmo">
+          <div class="card-content white-text">
+            <div class="row">
+              <div class="col s2 offset-s10">
+                <span class="osdlogo">OSD Labs</span>
+              </div>
+              <span class="card-title">Encore</span>
+              <div class="row controlbar">
+                <div class="col s12">
+                  <div class='current_time'></div>
+                  <div class='duration'></div>
+                  <input type="text" id="scrub_bar" data-slider-value="0" data-slider-id="scrub_bar_slider" value="" data-slider-max="100" data-slider-step="0.1" data-slider-tooltip="hide" />
+                </div>
+                <div class="col s12">
+                  <span class="control prev"><i class="fa fa-backward fa-2x"></i></span>
+                  <span class="control play"><i class="fa fa-play-circle fa-3x"></i></span>
+                  <span class="control next"><i class="fa fa-forward fa-2x"></i></span>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <!-- <script type="text/javascript" src="bower_components/materialize/dist/js/materialize.js"></script> -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+
+</body>
+
+</html>
