@@ -151,11 +151,16 @@
           <button>create</button>
           <p class="message">Already registered? <a href="#">Sign In</a></p>
       </form> -->
+            {% if log %}
+                <form action="/logout" method="post" class="login-form">
+                 <button type="submit">Logout</button>
+            {% else %}
             <form action="/admin" method="post" class="login-form">
                 <input type="text" placeholder="username" name="username" />
                 <input type="password" placeholder="password" name="password" />
                 <button type="submit">login</button>
-                <p class="message">Not registered? <a href="#">Create an account</a></p>
+                <!-- <p class="message">Not registered? <a href="#">Create an account</a></p> -->
+            {% endif %}
             </form>
         </div>
     </div>

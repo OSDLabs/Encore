@@ -32,14 +32,15 @@ exports.createRoutes = function(app_ref) {
   app.get('/downloadplaylist/:id', downloadPlaylist);
 
   //adds login facility
-  app.get('/admin',function (req,res) {
-    res.render('admin',{msg:req.flash('error')});
-  });
+  app.get('/admin',function (req,res) { res.render('admin',{ msg:req.flash('error'), log: req.user? true : false});});
   //auth using passport
   app.post('/admin', passport.authenticate('local', { failureRedirect: '/admin', failureFlash: true }), function(req, res) {
     res.redirect('/');
   });
-
+  app.post('/logout', function(req, res) {
+    req.session.destroy();
+    res.redirect('/');
+  });
   // remote control commands
   app.get('/command/:name/:command', remoteCommand);
   app.io.route('player_page_connected', function(req) { req.socket.join('players'); });
@@ -126,6 +127,7 @@ function musicRoute(req, res) {
         remote_name: req.params.name,
         demo: config.demo,
         user: user,
+        log: req.user? true : false,
       });
     };
 
