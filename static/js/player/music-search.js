@@ -10,8 +10,9 @@ function activateSearch() {
   // Show search overlay
   search_overlay.style.display = "block";
   // Keep search initialised with previously saved search value
-  player.updateSearch($("#input").val());
+  // player.updateSearch($("#input").val());
   //  Keep focus on search
+  $('#input').val('');
   $('#input').focus();
   $('#music_ui').addClass('blur');
 }
