@@ -126,6 +126,7 @@ body {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  cursor: pointer;
 }
 tr:hover {
   background-color: #eeeeee;
