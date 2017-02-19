@@ -34,7 +34,11 @@ exports.createRoutes = function(app_ref) {
   //adds login facility
   app.get('/admin',function (req,res) { res.render('admin',{ msg:req.flash('error'), log: req.user? true : false});});
   //auth using passport
-  app.post('/admin', passport.authenticate('local', { failureRedirect: '/admin', failureFlash: true }), function(req, res) {
+  app.post('/admin', passport.authenticate('admin-login', { failureRedirect: '/admin', failureFlash: true }), function(req, res) {
+    res.redirect('/');
+  });
+  app.get('/login', function (req,res) { res.render('login',{ msg:req.flash('error'), log: req.user? true : false});});
+  app.post('/login', passport.authenticate('user-login', { failureRedirect: '/login', failureFlash: true }), function(req, res) {
     res.redirect('/');
   });
   app.post('/logout', function(req, res) {

@@ -6,4 +6,5 @@ module.exports = function(app) {
   app.db.playlists = new Datastore({ filename: app.get('configDir') + '/dbs/playlists.db', autoload: true });
   app.db.settings = new Datastore({ filename: app.get('configDir') + '/dbs/settings.db', autoload: true });
   app.db.users = new Datastore({ filename: app.get('configDir') + '/dbs/users.db', autoload: true });
+  app.db.admins = new Datastore({ filename: app.get('configDir') + '/dbs/admins.db', autoload: true });
 };
