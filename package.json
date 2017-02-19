@@ -34,6 +34,7 @@
     "song-search": "^0.1.0",
     "soundcloud-resolver": "*",
     "swig": "*",
+    "validator": "^6.2.1",
     "youtube-playlist-info": "^0.1.0",
     "ytdl-core": "*"
   },

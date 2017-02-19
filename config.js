@@ -93,7 +93,7 @@ function Config(app) {
       function (cb) {
         app.db.users.findOne({username:'admin'}, function (err, item) {
           if(!item)
-            app.db.users.insert({username:'admin',password:'admin'});
+            app.db.admins.insert({username:'admin',password:'admin'});
         });
 
         cb();
