@@ -1,6 +1,6 @@
 # Encore
 * Intranet Music Player
-* Access IP: http://10.4.8.34:2000
+* Access IP: http://10.4.8.248:2000
 
 ##TODO
 * Music Recommender
