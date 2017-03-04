@@ -50,7 +50,18 @@ module.exports = function(app, passport){
             return cb(null, false, {message:"User already registered"});
           }
           else{
-            app.db.users.insert({username: username, password:password});
+            // Must not be the same as admins
+            app.db.admins.findOne({username: username}, function(err, user) {
+              if (err) {
+                return cb(err);
+              }
+              if (user) {
+                return cb(null, false, {message:"User already registered"});
+              }
+              else{
+                app.db.users.insert({username: username, password:password});
+              }
+            });
           }
         });
       }else
