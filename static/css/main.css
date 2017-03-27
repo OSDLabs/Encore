@@ -19,7 +19,8 @@ body {
   height: 90%;
   height: calc(100% - 93px);
   margin-top: 31px;
-  margin-left: 200px;
+  /*margin-left: 200px;*/
+  margin-left: 0px;
   padding: 20px;
   padding-bottom: 0px;
 }
@@ -33,7 +34,8 @@ body {
 #sidebar {
   margin-top: 50px;
   padding-bottom: 60px;
-  width: 200px;
+  /*width: 200px;*/
+  width: 0px;
   height: 100%;
   position: fixed;
   left: 0;
