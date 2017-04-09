@@ -17,22 +17,26 @@ var basicAuth = require('basic-auth-connect');
 var passport = require('passport');
 var Strategy = require('passport-local').Strategy;
 
+var passportSocketio = require('passport.socketio');
+var NedbStore = require('nedb-session-store')(require('express-session'));
+
 var app = express().http().io();
 
+// fetch the config directory
+app.set('configDir', process.env.configDir || __dirname);
+
+//set the session options
+var sessionStore = new NedbStore({
+      filename: app.get('configDir')+'/dbs/persistance.db'
+    });
 var sessionOpts = {
+  key: 'express.sid',
   secret: 'keyboard cat',
+  store: sessionStore,
   resave: true,
   saveUninitialized: true,
 };
 app.io.session(sessionOpts);
-
-app.io.set('authorization', function handleAuth(handshakeData, accept) {
-  // accept all requests
-  accept(null, true);
-});
-
-// fetch the config directory
-app.set('configDir', process.env.configDir || __dirname);
 
 // all variables to be shared throughout the app
 app.set('port', process.env.PORT || 2000);
@@ -43,7 +47,10 @@ app.set('started', Date.now());
 app.engine('html', require('swig').renderFile);
 
 async.series([function createDatabaseDirectory(next) {
-  // make sure the dbs directory is present
+  // make sure the dbs, users and covers directory is present
+  mkdirp(app.get('configDir') + '/dbs/users', function (err) {
+      if (err) { console.error(err); }
+  });
   mkdirp(app.get('configDir') + '/dbs/covers', next);
 }, function databaseDirectoryCreated(next) {
   // attach the db to the app
@@ -70,6 +77,22 @@ async.series([function createDatabaseDirectory(next) {
 }, function setupPassport(next) {
   //Configure passport
   require(__dirname + '/passport_config.js')(app, passport);
+
+  //set auth sessionopts for passportSocketio
+  app.io.set('authorization', passportSocketio.authorize({
+      cookieParser: cookieParser,
+      key: 'express.sid',
+      secret: 'keyboard cat',
+      store: sessionStore,
+      passport: passport,
+      success: function (data, accept) {
+          accept(null, true);
+      },
+      fail: function (data, message, error, accept) {
+          //accept whether or not user is authorized
+          accept(null, true);
+      }
+  }));
 
   next();
 }, function setupEverythingElse(next) {
