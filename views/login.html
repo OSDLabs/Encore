@@ -144,26 +144,40 @@
         </div>
       {% endif %}
         <div class="form">
-            <!-- <form class="register-form">
-          <input type="text" placeholder="name" />
-          <input type="password" placeholder="password" />
-          <input type="text" placeholder="email address" />
-          <button>create</button>
-          <p class="message">Already registered? <a href="#">Sign In</a></p>
-      </form> -->
             {% if log %}
                 <form action="/logout" method="post" class="login-form">
                  <button type="submit">Logout</button>
             {% else %}
+            <form action="/signup" method="post" class="register-form">
+                <input type="text" placeholder="name" name="name"/>
+                <input type="password" placeholder="password" name="password" />
+                <input type="text" placeholder="username" name="username" />
+                <button>create</button>
+                <p class="message">Already registered? <a href="#">Sign In</a></p>
+            </form>
             <form action="/login" method="post" class="login-form">
                 <input type="text" placeholder="username" name="username" />
                 <input type="password" placeholder="password" name="password" />
                 <button type="submit">login</button>
-                <!-- <p class="message">Not registered? <a href="#">Create an account</a></p> -->
+                <p class="message">Not registered? <a href="#">Create an account</a></p>
             {% endif %}
             </form>
         </div>
     </div>
+    <script type="text/javascript" src="static/lib/head.min.js"></script>
+    <script type="text/javascript">
+      head.js("static/lib/libs.min.js");
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function(event) {
+          $('.message a').click(function() {
+              $('form').animate({
+                  height: "toggle",
+                  opacity: "toggle"
+              }, "slow");
+          });
+      });
+  </script>
 </body>
 
 </html>

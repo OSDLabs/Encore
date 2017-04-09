@@ -12,7 +12,7 @@ module.exports = function(app, passport){
       // Validate user data
       var error = 0;
       username = validate.trim(username);
-      username = username.toLowerCase();
+      // Users may have caps in usernames; username = username.toLowerCase();
       error += validate.isEmpty(username);
       error += validate.isEmpty(password);
 
@@ -24,7 +24,7 @@ module.exports = function(app, passport){
           return cb(null, user);
         });
 
-      } 
+      }
       else
         return cb(null, false);
     }
@@ -37,7 +37,7 @@ module.exports = function(app, passport){
       // Validate user data
       var error = 0;
       username = validate.trim(username);
-      username = username.toLowerCase();
+      // username = username.toLowerCase();
       error += validate.isEmpty(username);
       error += validate.isEmpty(password);
 
@@ -60,6 +60,7 @@ module.exports = function(app, passport){
               }
               else{
                 app.db.users.insert({username: username, password:password});
+                return cb(null,{username:username, password:password});
               }
             });
           }
@@ -68,7 +69,7 @@ module.exports = function(app, passport){
         return cb(null, false);
     }
   ));
-  
+
   // Specify a local strategy for passport admin login
   passport.use('admin-login', new LocalStrategy(
     function(username, password, cb){
@@ -76,7 +77,6 @@ module.exports = function(app, passport){
       // Validate user data
       var error = 0;
       username = validate.trim(username);
-      username = username.toLowerCase();
       error += validate.isEmpty(username);
       error += validate.isEmpty(password);
 
@@ -88,7 +88,7 @@ module.exports = function(app, passport){
           return cb(null, user);
         });
 
-      } 
+      }
       else
         return cb(null, false);
     }
