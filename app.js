@@ -68,26 +68,9 @@ async.series([function createDatabaseDirectory(next) {
   }
   next();
 }, function setupPassport(next) {
+  //Configure passport
+  require(__dirname + '/passport_config.js')(app, passport);
 
-  passport.use(new Strategy(
-  function(username, password, cb) {
-    app.db.users.findOne({username: username}, function(err, user) {
-      if (err) { return cb(err); }
-      if (!user) { return cb(null, false, {message:"Invalid credentials"}); }
-      if (user.password != password) { return cb(null, false, {message:"Invalid credentials"}); }
-      return cb(null, user);
-    });
-  }));
-
-  // Configure Passport persistence.
-  passport.serializeUser(function(user, cb) {
-    var sessionUser = user;
-    cb(null, sessionUser);
-  });
-
-  passport.deserializeUser(function(user, cb) {
-      cb(null, user);
-  });
   next();
 }, function setupEverythingElse(next) {
   // middleware to use in the app
