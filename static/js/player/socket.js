@@ -1,5 +1,5 @@
 // soccet connection and events
-socket.on('connect', function() {
+socket.on('connect', function(sc) {
   console.log('Socket connected');
 
   // notify the server we have connected
