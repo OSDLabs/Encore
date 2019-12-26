@@ -121,6 +121,9 @@ body {
   table-layout: fixed;
   margin-bottom: 0;
 }
+.song_table > thead > tr > th {
+  cursor: default;
+}
 .song_table tbody > tr > td {
   padding: 0 !important;
   line-height: 40px;
@@ -156,8 +159,14 @@ tr:hover .options {
   max-height: 300px;
   overflow-y: auto;
 }
+.options-menu > li {
+  cursor: pointer;
+}
 .song_text {
   z-index: 0;
+}
+.colsearch {
+  cursor: pointer;
 }
 .colsearch:hover {
   text-decoration: underline;
@@ -280,6 +289,7 @@ tr:hover .options {
   width: 60px;
   height: 60px;
   margin-right: 10px;
+  cursor: pointer;
 }
 .detailed_info_cover {
   max-width: 200px;
@@ -313,6 +323,7 @@ tr:hover .options {
 }
 .info_options {
   margin-left: 20px;
+  cursor: pointer;
 }
 .info_options:hover {
   color: #444;
